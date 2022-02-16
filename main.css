@@ -1,0 +1,11 @@
+div{
+    background: white;
+    box-shadow: 0 0 20px 20px rgb(236, 230, 230);
+    width: 40%;
+    margin: 0 auto;
+
+}
+
+li{
+    list-style: none;
+}

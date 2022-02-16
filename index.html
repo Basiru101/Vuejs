@@ -10,18 +10,26 @@
 <body>
 
     <div id="shopping-list">
-        <h1>{{header}}</h1>
-        <input v-model="header">
+        <h1>{{header || 'Welcome'}}</h1>
+        <!-- <input v-model="header"> -->
 
+        <ul>
+            <li v-for="item in items">{{item}}</li>
+        </ul>
     </div>
     
 
     <script src="https://unpkg.com/vue@3"></script>
     <script>
-        Vue.createApp({
+       const shoppingList = Vue.createApp({
             data(){
                 return {
-                    header: "Vue is ready to party"
+                    header: "Shopping List App",
+                    items: [
+                        "10 party hats",
+                        "2 boat games",
+                        "20 cups"
+                    ]
                 }
             }
         })
