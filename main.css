@@ -1,11 +1,19 @@
 div{
     background: white;
     box-shadow: 0 0 20px 20px rgb(236, 230, 230);
-    width: 40%;
+    width: 48%;
     margin: 0 auto;
 
 }
 
 li{
     list-style: none;
+}
+
+h1{
+    text-align: center;
+}
+
+input{
+    margin: 2rem;
 }

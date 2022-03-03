@@ -9,32 +9,41 @@
 </head>
 <body>
 
-    <div id="shopping-list">
+    <div id="shopping">
         <h1>{{header || 'Welcome'}}</h1>
-        <!-- <input v-model="header"> -->
+
+        <input v-model.lazy="newItem" type="text" placeholder="Add an item" size="50"><br>
+        <label><input type="radio" v-model="newItemPriority" value="low">Low</label><br>
+        <label><input type="radio" v-model="newItemPriority" value="high">High</label>
+        {{newItem}} {{newItemPriority}}
 
         <ul>
-            <li v-for="item in items">{{item}}</li>
+            <li v-for="item in items" :key="item.id">{{item.label}}</li>
         </ul>
     </div>
     
 
     <script src="https://unpkg.com/vue@3"></script>
     <script>
-       const shoppingList = Vue.createApp({
-            data(){
-                return {
-                    header: "Shopping List App",
-                    items: [
-                        "10 party hats",
-                        "2 boat games",
-                        "20 cups"
-                    ]
-                }
-            }
-        })
+  
 
-        .mount('#shopping-list')
+    const shoppingListApp = Vue.createApp({
+        data(){
+            return{
+                header:"Shopping List App",
+                newItem: "",
+                newItemPriority:"",
+
+                items: [
+                    {id:1, label: "23 gold games for free"},
+                    {id:2, label: '3 boat games'},
+                    {id:3, label: ' 20 cups'}
+                ]
+            }
+        }
+    })
+
+    .mount("#shopping")
     </script>
 </body>
 </html>
