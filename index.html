@@ -9,41 +9,72 @@
 </head>
 <body>
 
-    <div id="shopping">
+    <div id="shopping-list">
         <h1>{{header || 'Welcome'}}</h1>
 
-        <input v-model.lazy="newItem" type="text" placeholder="Add an item" size="50"><br>
-        <label><input type="radio" v-model="newItemPriority" value="low">Low</label><br>
-        <label><input type="radio" v-model="newItemPriority" value="high">High</label>
-        {{newItem}} {{newItemPriority}}
+        <div class="add-item-form">
+
+            
+            <input v-model.lazy="newItem" type="text" placeholder="Add an item" size="50"><br>
+
+            <label><input type="checkbox" v-model="newItemHighPriority">High Priority</label>
+            <!-- {{newItem}} {{newItemHighPriority}} -->
+
+            <button v-on:click="items.push({id:items.length + 1, label: newItem})"
+             class="btn btn-primary">
+             Save Item
+            </button>   
+        </div>
 
         <ul>
             <li v-for="item in items" :key="item.id">{{item.label}}</li>
         </ul>
+        
+
     </div>
     
 
     <script src="https://unpkg.com/vue@3"></script>
     <script>
+
+const shoppingLstApp = Vue.createApp({
+    data(){
+        return{
+            header: "Shopping List App",
+            newItem: "",
+            newItemHighPriority: "",
+            items: [
+                {id:1, label: "20 goal games"},
+                {id:2, label: "12 Banana slice"},
+                {id:3, label: "20 cups"}
+            ]
+        }
+    }
+})
+
+.mount("#shopping-list")
+
+
+
   
 
-    const shoppingListApp = Vue.createApp({
-        data(){
-            return{
-                header:"Shopping List App",
-                newItem: "",
-                newItemPriority:"",
+    // const shoppingListApp = Vue.createApp({
+    //     data(){
+    //         return{
+    //             header:"Shopping List App",
+    //             newItem: "",
+    //             newItemHighPriority: false,
 
-                items: [
-                    {id:1, label: "23 gold games for free"},
-                    {id:2, label: '3 boat games'},
-                    {id:3, label: ' 20 cups'}
-                ]
-            }
-        }
-    })
+    //             items: [
+    //                 {id:1, label: "23 gold games for free"},
+    //                 {id:2, label: '3 boat games'},
+    //                 {id:3, label: ' 20 cups'}
+    //             ]
+    //         }
+    //     }
+    // })
 
-    .mount("#shopping")
+    // .mount("#shopping")
     </script>
 </body>
 </html>
