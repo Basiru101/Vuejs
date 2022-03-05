@@ -12,19 +12,20 @@
     <div id="shopping-list">
         <h1>{{header || 'Welcome'}}</h1>
 
-        <div class="add-item-form">
-
+        <div class="add-item-form"> 
+            <input @keyup.enter="saveItem"
             
-            <input v-model.lazy="newItem" type="text" placeholder="Add an item" size="50"><br>
+            type="text" v-model="newItem" placeholder="Add an item" size="50"><br>
 
-            <label><input type="checkbox" v-model="newItemHighPriority">High Priority</label>
-            <!-- {{newItem}} {{newItemHighPriority}} -->
+            <label><input v-model="newItemHighPriority" type="checkbox">High Priority</label>
 
-            <button v-on:click="items.push({id:items.length + 1, label: newItem})"
+            <button @click="saveItem"
              class="btn btn-primary">
              Save Item
-            </button>   
+            </button>
         </div>
+
+
 
         <ul>
             <li v-for="item in items" :key="item.id">{{item.label}}</li>
@@ -49,10 +50,15 @@ const shoppingLstApp = Vue.createApp({
                 {id:3, label: "20 cups"}
             ]
         }
-    }
-})
+    },
 
-.mount("#shopping-list")
+    methods:{
+        saveItem(){
+            this.items.push({id:this.items.length + 1, label: this.newItem})
+            this.newItem = ""
+        }
+    }
+}).mount("#shopping-list")
 
 
 
